@@ -119,28 +119,28 @@ def search_items():
 
     # 조건검색식 추천 종목 얻기
     now = datetime.datetime.now().strftime("%Y/%m/%d/00:00")
-    df = pd.read_csv("H:/알고리즘트레이딩2/searched_items.csv", encoding="euc-kr")
+    df = pd.read_csv(PyCond/searched_items.csv", encoding="euc-kr")
     df = df.loc[df['date'] >= now].reset_index(drop=True)
 
     # 오늘 날짜로 검색된 추천 종목 없으면 프로그램 실행
     if len(df) == 0:
-        os.chdir("H:/알고리즘트레이딩2")
+        os.chdir("PyCond")
         os.system("C:/anaconda3_32/python PyCond.py exit")
-        os.chdir("H:/langchain")
+        os.chdir("../")
 
-        df = pd.read_csv("H:/알고리즘트레이딩2/searched_items.csv", encoding="euc-kr")
+        df = pd.read_csv("PyCond/searched_items.csv", encoding="euc-kr")
         df = df.loc[df['date'] >= now].reset_index(drop=True)
 
     # 뉴스 분석 추천 종목 얻기
     now_bert = datetime.datetime.now().strftime("%Y-%m-%d-00:00")
-    df_bert = pd.read_csv("H:/급등주_bert/임의기간상승.csv", encoding="euc-kr")
+    df_bert = pd.read_csv("뉴스분석/임의기간상승.csv", encoding="euc-kr")
     df_bert = df_bert.loc[df_bert['date'] >= now_bert].reset_index(drop=True)
 
     # 오늘 날짜로 검색된 뉴스 분석 추천 종목 없으면 프로그램 실행
     if len(df) == 0:
-        os.chdir("H:/급등주_bert")
+        os.chdir("뉴스분석/급등주_bert")
         os.system("C:/Users/user/Anaconda3/envs/tensorflow-text/python 급등주추천3.py all 0.97")
-        os.chdir("H:/langchain")
+        os.chdir("../")
 
     prompt = f"""
     다음은 키움 조건 검색식에 있는 여러 분야(데이터의 컬럼 참조)로부터 기술적 지표상 매수 추천 주식 종목들입니다. 
@@ -256,3 +256,4 @@ with open(file_path, 'w', encoding='utf-8') as f:
     #f.write(str(response.text)) # 첫 번째 답변
 
 print(f"'{file_path}'에 문자열이 성공적으로 저장되었습니다.")
+
