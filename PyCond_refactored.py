@@ -22,7 +22,7 @@ from Kiwoom import Kiwoom
 
 
 # UI 파일 로드
-UI_FORM_CLASS = uic.loadUiType("../condition.ui")[0]
+UI_FORM_CLASS = uic.loadUiType("condition.ui")[0]
 
 # 상수 정의
 API_CALL_DELAY = 0.2  # API 호출 간 대기 시간 (초)
