@@ -141,7 +141,10 @@ def search_items():
         os.chdir("뉴스분석/급등주_bert")
         os.system("C:/Users/user/Anaconda3/envs/tensorflow-text/python 급등주추천3.py all 0.97")
         os.chdir("../")
-
+           
+        df_bert = pd.read_csv("뉴스분석/임의기간상승.csv", encoding="euc-kr")
+        df_bert = df.loc[df['date'] >= now].reset_index(drop=True)
+           
     prompt = f"""
     다음은 키움 조건 검색식에 있는 여러 분야(데이터의 컬럼 참조)로부터 기술적 지표상 매수 추천 주식 종목들입니다. 
 
@@ -256,4 +259,5 @@ with open(file_path, 'w', encoding='utf-8') as f:
     #f.write(str(response.text)) # 첫 번째 답변
 
 print(f"'{file_path}'에 문자열이 성공적으로 저장되었습니다.")
+
 
